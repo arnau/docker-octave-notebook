@@ -1,9 +1,14 @@
 image := arnau/octave-notebook
 name := ioctave
 
-build:
+build: configure
 	docker build -t $(image) .
 .PHONY: build
+
+configure:
+	@$(if $(shell cat .git/config | grep .gitconfig),, \
+          git config --add include.path $(PWD)/.gitconfig)
+.PHONY: configure
 
 install:
 	docker run -d \
