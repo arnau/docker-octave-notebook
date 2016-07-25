@@ -16,6 +16,7 @@ nb_metadata = json_in["metadata"]
 def strip_output_from_cell(cell):
     if "outputs" in cell:
         cell["outputs"] = []
+
     if "execution_count" in cell:
         del cell["execution_count"]
 
