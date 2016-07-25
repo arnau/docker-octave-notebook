@@ -11,7 +11,7 @@ import sys
 import json
 
 nb = sys.stdin.read()
-json_in = json.loads(nb)
+json_in = json.loads(nb, encoding="utf-8")
 nb_metadata = json_in["metadata"]
 
 def strip_output_from_cell(cell):
@@ -24,4 +24,10 @@ def strip_output_from_cell(cell):
 for cell in json_in["cells"]:
     strip_output_from_cell(cell)
 
-json.dump(json_in, sys.stdout, sort_keys=True, indent=1, separators=(",",": "), ensure_ascii=False)
+json.dump(json_in,
+          sys.stdout,
+          sort_keys=True,
+          indent=1,
+          separators=(",",": "),
+          ensure_ascii=False,
+          encoding="utf-8")
